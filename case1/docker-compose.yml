@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  kim1:
+    build:
+      context: .
+      dockerfile: ./kim1/Dockerfile
+    container_name: kim1_case1
+    volumes:
+      - ./kim1:/kim1
+    ports:
+      - 5000:5000
+
+  kim2:
+    build:
+      context: .
+      dockerfile: ./kim2/Dockerfile
+    container_name: kim2_case1
+    volumes:
+      - ./kim2:/kim2
+    depends_on:
+      - kim1
+    ports:
+      - 5001:5001
+      
+  kim3:
+    build:
+      context: .
+      dockerfile: ./kim3/Dockerfile
+    container_name: kim3_case1
+    volumes:
+      - ./kim3:/kim3
+    depends_on:
+      - kim2
+    ports:
+      - 5002:5002
